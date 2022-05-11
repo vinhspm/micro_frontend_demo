@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "start:shell": "ng serve --project=acme-email-client --port 5200",
-    "start:mailbox": "ng serve --project=mailbox --port 5300",
-    "start:calendar": "ng serve --project=calendar --port 5400",
+    "start:service1": "ng serve --project=mailbox --port 5300",
+    "start:service2": "ng serve --project=calendar --port 5400",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'mailbox',
+    path: 'service1',
     loadChildren: () => import('mailbox/MailboxModule').then(m => m.MailboxModule)
   },
   {
-    path: 'calendar',
+    path: 'service2',
     loadChildren: () => import('calendar/CalendarModule').then(m => m.CalendarModule)
   }
 ];

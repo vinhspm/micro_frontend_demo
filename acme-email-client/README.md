@@ -1,27 +1,43 @@
-# AcmeEmailClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
+Hướng dẫn cài đặt
 
-## Development server
+Trong demo này, chúng ta sẽ sử dụng Webpack 5, trong bản release mới nhất nó đã giới thiệu một advanced API là Module Federation. Điều này giúp chúng ta dễ dàng phát triển được Micro Frontend. Ngoài ra, chúng ta sẽ dùng Angular v11 (thời điểm này đang là RC) để tạo các app.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Chuẩn bị
 
-## Code scaffolding
+Đầu tiên, chúng ta cần tạo một shell app bằng lệnh sau.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Sau khi tạo xong project, chúng ta sẽ tạo thêm 2 application nữa: 1 cho service1, 1 cho service2.
 
-## Build
+Ngoài ra, chúng ta cần dùng đến custom webpack config nên chúng ta cần install thêm một package là @angular-builders/custom-webpack.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Bật tính năng Module Federation
 
-## Further help
+Đây là tính năng hỗ trợ build các module một cách độc lập. Để bật được tính năng này chúng ta cần sử dụng custom webpack như sau: ta tạo ra các file webpack config, sau đó thay thế builder mặc định ở trong angular.json.
+Chúng ta tạo ra 2 files webpack.config.js và webpack.prod.config.js để sử dụng cho 2 môi trường là development và production. Sau đó chúng ta sẽ thay thế trong angular.json
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thay @angular-devkit/build-angular bằng @angular-builders/custom-webpack. 
+Thêm config của webpack mà chúng ta vừa tạo
+Config Shell
+Chúng ta cần config shell như sau để bật Module Federation:
+		
+		
+		Shell sẽ chạy ở port 5200, và chúng ta cần một unique name cho mỗi app. Ngoài ra, do shell sẽ trỏ đến 2 app remote, nên bạn sẽ thấy chúng ta config tương ứng cho 2 app remote luôn ở đây. Do đang dùng các micro app bằng Angular, nên chúng ta có thể share các phần code, như config phía trên, chúng ta đã share 3 packages. Giờ đây chúng ta có thể thêm config cho routing của shell để trỏ đến 2 micro app kia
+		
+
+
+
+		
+Khởi chạy ứng dụng
+
+
+Chạy cả 3 ứng dụng với 3 lệnh sau
+ npm run start:shell
+ npm run start:service1
+ npm run start:service2
+
+
